@@ -117,7 +117,7 @@
         <!--Fin carrito de compras-->
 
         <!--Inicio formulario de registro-->
-        <div id="id03" class="modal">
+        <div id="id03" class="modal" action="registro.php" method="POST">
           <div class="modal-content-reg animate">
             <div class="container">
               <form class="formreg">
@@ -235,6 +235,7 @@
 	</section>
   </body>
 </html>
+
 <script>
   var modal = document.getElementById('id01');
   var cart = document.getElementById('id02');
@@ -441,6 +442,7 @@
     }
   });
   });
+
   // Inicio
   renderizarProductos();
   renderizarCarrito();
