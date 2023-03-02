@@ -3,8 +3,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://rsms.me/inter/inter-ui.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://rsms.me/inter/inter-ui.css">
+  <link rel="stylesheet" href="./style.css">
   <title>Empory</title>
 </head>
   <body>
@@ -17,14 +19,15 @@
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
           </span>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Camisas</a></li>
-            <li><a class="dropdown-item" href="#">Pantalones</a></li>
-            <li><a class="dropdown-item" href="#">Sacos</a></li>
-            <li><a class="dropdown-item" href="#">Chalecos</a></li>
-            <li><a class="dropdown-item" href="#">Corbatas</a></li>
+            <li><a class="dropdown-item" href="#camisas">Camisas</a></li>
+            <li><a class="dropdown-item" href="#pantalones">Pantalones</a></li>
+            <li><a class="dropdown-item" href="#sacos">Sacos</a></li>
+            <li><a class="dropdown-item" href="#chalecos">Chalecos</a></li>
+            <li><a class="dropdown-item" href="#corbatas">Corbatas</a></li>
           </ul>
         </div>
         <!--Fin categorias-->
+
         <!-- Titulo-->
         <ul class="navbar-nav mr-auto">
           <h1 class="display-4">EMPORY</h1>
@@ -50,36 +53,46 @@
               <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
             </svg>
           </button>
+
           <!--Inicio de sesión-->
           <div id="id01" class="modal">
             <form class="modal-content animate" action="/action_page.php" method="post">
               <div class="container">
+                <h4 class="display-4">BIENVENIDO</h4>
+              </div>
+              <div class="container">
                 <label for="exampleDropdownFormEmail2" class="form-label">Correo electronico</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" required>
               </div>
               <div class="container">
                 <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña">
+                <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña" required>
               </div>
               <div class="container">
                 <div class="container">
-                  <span class="psw">¿No tienes cuenta?<a href="#">Registrate</a></span>
+                  <span class="psw">¿No tienes cuenta?
+                    <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-transparent" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                      Registrarse
+                    </button>
+                  </span>
                 </div>
               </div>
               <div class="container">
-                <button type="button" class="btn btn-outline-secondary">Entrar</button>
+                <button type="button" class="btn btn-outline-success">Entrar</button>
+                <p class="error-message" id="error-message"></p>
                 <span class="psw"><a href="#">Recuperar la contraseña</a></span>
               </div>
             </form>
           </div>
         <!--Fin inicio sesión-->
+
         <!--Inicio carrito de compras-->
         <div id="id02" class="modal">
           <div class="modal-content-cart animate">
             <div class="container">
               <div class="row">
                 <!-- Elementos generados a partir del JSON -->
-                <main id="items" class="col-sm-8 row"></main>
+               
                 <!-- Carrito -->
                 <aside class="col-sm-4">
                   <h2>Carrito</h2>
@@ -94,7 +107,7 @@
                     <input type="hidden" name="cmd" value="_s-xclick">
                     <input type="hidden" name="hosted_button_id" value="MATSC4JDLS5SU">
                     <button type="image" class="btn btn-success" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">Pagar</button>
-                    <img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                    <img alt="" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
                   </form>
                 </aside>
               </div>
@@ -102,16 +115,37 @@
           </div>
         </div>
         <!--Fin carrito de compras-->
+
         <!--Inicio formulario de registro-->
-          
-        <!--Fin formulario de registro-->
+        <div id="id03" class="modal">
+          <div class="modal-content-reg animate">
+            <div class="container">
+              <form class="formreg">
+                <h2>Registro</h2>
+                <label for="nombre">Nombre:</label>
+                <input class="form-control"type="text" id="nombre" name="nombre" required>
+                <label for="email">Email:</label>
+                <input class="form-control"type="email" id="email" name="email" required>
+                <label for="contrasena">Contraseña:</label>
+                <input class="form-control"type="password" id="contrasena" name="contrasena" required>
+                <label for="confirmar-contrasena">Confirmar Contraseña:</label>
+                <input class="form-control"type="password" id="confirmar-contrasena" name="confirmar-contrasena" required>
+                <label for="direccion">Dirección:</label>
+                <input class="form-control"type="text" id="direccion" name="direccion" required>
+                <label for="telefono">Teléfono:</label>
+                <input class="form-control"type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required><br>
+                <input type="submit" class="btn btn-outline-success" value="Registrarse">
+		            <p class="error-message" id="error-message"></p>
+              </form>
+            </div>
+          </div>
+        </div>
       </nav>
+        <!--Fin formulario de registro-->
+      
       <!--Inicio carousel--> 
       <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-          <!--<div class="carousel-item active">
-            <video src="./images/carousel/carousel6.mp4" width="800" height="700" autoplay></video>
-          </div>-->
           <div class="carousel-item active">
             <img src="./images/carousel/carousel1.jpeg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="700">
           </div>
@@ -145,72 +179,111 @@
         </button>
       </div>
       <!-- Fin carousel -->
-      <form class="formreg">
-        <h2>Registro</h2>
-        <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" required>
-    
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    
-        <label for="contrasena">Contraseña:</label>
-        <input type="password" id="contrasena" name="contrasena" required>
-    
-        <label for="confirmar-contrasena">Confirmar Contraseña:</label>
-        <input type="password" id="confirmar-contrasena" name="confirmar-contrasena" required>
-    
-        <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" required>
-    
-        <label for="telefono">Teléfono:</label>
-        <input type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required>
-    
-        <label for="genero">Género:</label>
-        <select id="genero" name="genero" required>
-          <option value="">-- Seleccione --</option>
-          <option value="masculino">Masculino</option>
-          <option value="femenino">Femenino</option>
-          <option value="otro">Otro</option>
-        </select>
-    
-        <input type="submitreg" value="Registrarse"><br>
-        <p class="error-message" id="error-message"></p>
-      </form>
-    </div>
+
+      <!-- Inicio sección camisas -->
+      <div id="camisas">
+        <div class="container">
+          <span><h2>CAMISAS</h2></span>
+          <main id="items" class="col-sm-8 row"></main>
+        </div>
+      </div>
+      <!-- Fin sección camisas -->
+
+      <!-- Inicio sección pantalones -->
+      <div id="pantalones">
+        <div class="container">
+          <span><h2>PANTALONES</h2></span>
+          <main id="" class="col-sm-8 row"></main>
+        </div>
+      </div>
+      <!-- Fin sección pantalones -->
+
+      <!-- Inicio sección sacos -->
+      <div id="sacos">
+        <div class="container">
+          <span><h2>SACOS</h2></span>
+          <main id="" class="col-sm-8 row"></main>
+        </div>
+      </div>
+      <!-- Fin sección sacos -->
+
+      <!-- Inicio sección chalecos -->
+      <div id="chalecos">
+        <div class="container">
+          <span><h2>CHALECOS</h2></span>
+          <main id="" class="col-sm-8 row"></main>
+        </div>
+      </div>
+      <!-- Fin sección chalecos -->
+
+      <!-- Inicio sección corbatas -->
+      <div id="corbatas">
+        <div class="container">
+          <span><h2>CORBATAS</h2></span>
+          <main id="" class="col-sm-8 row"></main>
+        </div>
+      </div>
+      <!-- Fin sección corbatas -->
+      <span class="ir-arriba icon-arrow-up2">
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
+        </svg>
+      </span>
+
+<!--Botón de scroll-->
+	<section class="contenido">
+	</section>
   </body>
 </html>
 <script>
   var modal = document.getElementById('id01');
   var cart = document.getElementById('id02');
+  var reg = document.getElementById('id03');
 
-  // When the user clicks anywhere outside of the modal, close it
+  // Hacer click fuera del modal cierre automático 
   window.onclick = function(event) {
       if (event.target == modal) {
-          modal.style.display = "none";
+        modal.style.display = "none";
       }
       if(event.target == cart){
-          cart.style.display = "none";
+        cart.style.display = "none";
+      }
+      if(event.target== reg){
+        reg.style.display = "none";
       }
   }
   // Variables
-  const baseDeDatos = [
+  const baseCamisas = [
       {
           id: 1,
           nombre: 'Camisa',
           precio: 200,
-          imagen: './images/cart/cart2.jpeg'
+          imagen: './images/cart/cart2.jpeg',
+          categoria: 1
       },
       {
           id: 2,
           nombre: 'Corbata',
           precio: 100,
-          imagen: './images/cart/cart1.png'
+          imagen: './images/cart/cart1.png',
+          categoria: 5
       },
       {
           id: 3,
           nombre: 'Pantalon',
           precio: 500,
-          imagen: './images/cart/cart3.png'
+          imagen: './images/cart/cart3.png',
+          categoria: 2
+      }
+  ];
+  const clientes = [
+      {
+          id: 1,
+          nombre: 'Pedro Jose',
+          email: 'pedrojose@gmail.com',
+          constraseña: 'huevo',
+          direccion: 'Sauces 106',
+          telefono: '9513114964'
       }
   ];
 
@@ -227,7 +300,7 @@
    * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
    */
   function renderizarProductos() {
-      baseDeDatos.forEach((info) => {
+      baseCamisas.forEach((info) => {
           // Estructura
           const miNodo = document.createElement('div');
           miNodo.classList.add('card', 'col-sm-5');
@@ -284,7 +357,7 @@
       // Generamos los Nodos a partir de carrito
       carritoSinDuplicados.forEach((item) => {
           // Obtenemos el item que necesitamos de la variable base de datos
-          const miItem = baseDeDatos.filter((itemBaseDatos) => {
+          const miItem = baseCamisas.filter((itemBaseDatos) => {
               // ¿Coincide las id? Solo puede existir un caso
               return itemBaseDatos.id === parseInt(item);
           });
@@ -295,7 +368,7 @@
           }, 0);
           // Creamos el nodo del item del carrito
           const miNodo = document.createElement('li');
-          miNodo.classList.add('list-group-item', 'text-right', 'mx-2');
+          miNodo.classList.add('list-group-item', 'text-right', 'mx4');
           miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
           // Boton de borrar
           const miBoton = document.createElement('button');
@@ -311,7 +384,6 @@
       // Renderizamos el precio total en el HTML
       DOMtotal.textContent = calcularTotal();
   }
-
   /**
    * Evento para borrar un elemento del carrito
    */
@@ -333,7 +405,7 @@
       // Recorremos el array del carrito 
       return carrito.reduce((total, item) => {
           // De cada elemento obtenemos su precio
-          const miItem = baseDeDatos.filter((itemBaseDatos) => {
+          const miItem = baseCamisas.filter((itemBaseDatos) => {
               return itemBaseDatos.id === parseInt(item);
           });
           // Los sumamos al total
@@ -354,121 +426,25 @@
   // Eventos
   DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 
+  //Scroll
+  $(document).ready(function(){
+  $('.ir-arriba').click(function(){
+    $('body, html').animate({
+      scrollTop: '0px'
+    }, 300);
+  });
+  $(window).scroll(function(){
+    if( $(this).scrollTop() > 0 ){
+      $('.ir-arriba').slideDown(300);
+    } else {
+      $('.ir-arriba').slideUp(300);
+    }
+  });
+  });
   // Inicio
   renderizarProductos();
   renderizarCarrito();
 </script>
 <style>
-  input[type=email], input[type=password] {
-    width: 100%;
-    padding: 20px 10px;
-    display: inline-block;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-  }
-
-  .container {
-    padding: 30px;
-  }
-
-  /* The Modal (background) */
-  .modal {
-    display: none; /* Hidden by default */
-    position: center; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-    padding-top: 60px;
-  }
-
-  /* Modal Content/Box */
-  .modal-content {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 35%; /* Could be more or less, depending on screen size */
-  }
-  .modal-content-cart {
-    background-color: #fefefe;
-    margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-    border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
-  }
-
-  /* Add Zoom Animation */
-  .animate {
-    -webkit-animation: animatezoom 0.6s;
-    animation: animatezoom 0.6s
-  }
-
-  @-webkit-keyframes animatezoom {
-    from {-webkit-transform: scale(0)} 
-    to {-webkit-transform: scale(1)}
-  }
-    
-  @keyframes animatezoom {
-    from {transform: scale(0)} 
-    to {transform: scale(1)}
-  }
-  .formreg {
-    margin: 0 auto;
-    width: 400px;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: 'Inter UI', sans-serif;
-  }
-
-  h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-  }
-
-  input[type="text"],
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
-    font-size: 16px;
-    font-family: 'Inter UI', sans-serif;
-  }
-
-  input[type="submitreg"] {
-    background-color: #4CAF50;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
-  }
-
-  input[type="submitreg"]:hover {
-    background-color: #3e8e41;
-  }
-
-  .error-message {
-    color: red;
-    font-size: 14px;
-    margin-top: 5px;
-  }
+  
 </style>
