@@ -33,9 +33,9 @@ input[type=email], input[type=password] {
   }
   .modal-content-cart {
     background-color: #fefefe;
-    margin: 5% auto 15% auto; /* % from the top, % from the bottom and centered */
+    margin: 0% auto 15% auto; /* % from the top, % from the bottom and centered */
     border: 1px solid #888;
-    width: 50%; /* Could be more or less, depending on screen size */
+    width: 40%; /* Could be more or less, depending on screen size */
   }
   .modal-content-reg {
     background-color: #fefefe;

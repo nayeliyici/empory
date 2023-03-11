@@ -13,20 +13,16 @@
     <div>
       <!--Menú general-->
       <nav class="navbar navbar-expand-lg">
-        <!--Botón para categorias-->
+        <!--Inicio Submenu-->
         <div class="btn-group">
           <span data-bs-toggle="dropdown" aria-expanded="true"><svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
           </span>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#camisas">Camisas</a></li>
-            <li><a class="dropdown-item" href="#pantalones">Pantalones</a></li>
-            <li><a class="dropdown-item" href="#sacos">Sacos</a></li>
-            <li><a class="dropdown-item" href="#chalecos">Chalecos</a></li>
-            <li><a class="dropdown-item" href="#corbatas">Corbatas</a></li>
+            <li><a class="dropdown-item" href="#catalogo">Catalogo</a></li>
           </ul>
         </div>
-        <!--Fin categorias-->
+        <!--Fin Submenu-->
 
         <!-- Titulo-->
         <ul class="navbar-nav mr-auto">
@@ -34,7 +30,7 @@
         </ul>
         <ul class="navbar-nav">
           <li>
-            <!--Buscar-->
+            <!--Inicio Buscar-->
             <form class="form-inline">
               <input class="form-control mr-sm-2" type="search" aria-label="Search">
               <button class="btn btn-outline-secondary" type="submit">Buscar</button>
@@ -53,37 +49,37 @@
               <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
             </svg>
           </button>
-
+        </ul>
           <!--Inicio de sesión-->
-          <div id="id01" class="modal">
-            <form class="modal-content animate" action="/action_page.php" method="post">
+        <div id="id01" class="modal">
+          <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="container">
+              <h4 class="display-4">BIENVENIDO</h4>
+            </div>
+            <div class="container">
+              <label for="exampleDropdownFormEmail2" class="form-label">Correo electronico</label>
+              <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" required>
+            </div>
+            <div class="container">
+              <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña" required>
+            </div>
+            <div class="container">
               <div class="container">
-                <h4 class="display-4">BIENVENIDO</h4>
+                <span class="psw">¿No tienes cuenta?
+                  <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-transparent" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                    Registrarse
+                  </button>
+                </span>
               </div>
-              <div class="container">
-                <label for="exampleDropdownFormEmail2" class="form-label">Correo electronico</label>
-                <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com" required>
-              </div>
-              <div class="container">
-                <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Contraseña" required>
-              </div>
-              <div class="container">
-                <div class="container">
-                  <span class="psw">¿No tienes cuenta?
-                    <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-transparent" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                      Registrarse
-                    </button>
-                  </span>
-                </div>
-              </div>
-              <div class="container">
-                <button type="button" class="btn btn-outline-success">Entrar</button>
-                <p class="error-message" id="error-message"></p>
-                <span class="psw"><a href="#">Recuperar la contraseña</a></span>
-              </div>
-            </form>
-          </div>
+            </div>
+            <div class="container">
+              <button type="button" class="btn btn-outline-success">Entrar</button>
+              <p class="error-message" id="error-message"></p>
+              <span class="psw"><a href="#">Recuperar la contraseña</a></span>
+            </div>
+          </form>
+        </div>
         <!--Fin inicio sesión-->
 
         <!--Inicio carrito de compras-->
@@ -91,8 +87,6 @@
           <div class="modal-content-cart animate">
             <div class="container">
               <div class="row">
-                <!-- Elementos generados a partir del JSON -->
-               
                 <!-- Carrito -->
                 <aside class="col-sm-4">
                   <h2>Carrito</h2>
@@ -180,59 +174,36 @@
       </div>
       <!-- Fin carousel -->
 
-      <!-- Inicio sección camisas -->
-      <div id="camisas">
+      <!-- Inicio categorias -->
+      <div id="categorias">
         <div class="container">
-          <span><h2>CAMISAS</h2></span>
+        <button class="btn btn-outline-secondary" onclick="filterall()">Todo</button>
+        <button class="btn btn-outline-secondary" onclick="filtercam()">Camisas</button>
+        <button class="btn btn-outline-secondary" onclick="filterpan()">Pantalones</button>
+        <button class="btn btn-outline-secondary" onclick="filtersac()">Sacos</button>
+        <button class="btn btn-outline-secondary" onclick="filtercha()">Chalecos</button>
+        <button class="btn btn-outline-secondary" onclick="filtercor()">Corbatas</button>
+        </div>
+      </div>
+      <!-- Fin categorias -->
+
+      <!-- Inicio productos -->
+      <div id="catalogo">
+        <div class="container">
+          <span><h2>CATALOGO</h2></span>
           <main id="items" class="col-sm-8 row"></main>
         </div>
       </div>
-      <!-- Fin sección camisas -->
+      <!-- Fin prodcutos -->
 
-      <!-- Inicio sección pantalones -->
-      <div id="pantalones">
-        <div class="container">
-          <span><h2>PANTALONES</h2></span>
-          <main id="" class="col-sm-8 row"></main>
-        </div>
-      </div>
-      <!-- Fin sección pantalones -->
-
-      <!-- Inicio sección sacos -->
-      <div id="sacos">
-        <div class="container">
-          <span><h2>SACOS</h2></span>
-          <main id="" class="col-sm-8 row"></main>
-        </div>
-      </div>
-      <!-- Fin sección sacos -->
-
-      <!-- Inicio sección chalecos -->
-      <div id="chalecos">
-        <div class="container">
-          <span><h2>CHALECOS</h2></span>
-          <main id="" class="col-sm-8 row"></main>
-        </div>
-      </div>
-      <!-- Fin sección chalecos -->
-
-      <!-- Inicio sección corbatas -->
-      <div id="corbatas">
-        <div class="container">
-          <span><h2>CORBATAS</h2></span>
-          <main id="" class="col-sm-8 row"></main>
-        </div>
-      </div>
-      <!-- Fin sección corbatas -->
+      <!--Botón de scroll-->
       <span class="ir-arriba icon-arrow-up2">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-arrow-up-circle" viewBox="0 0 16 16">
           <path fill-rule="evenodd" d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-7.5 3.5a.5.5 0 0 1-1 0V5.707L5.354 7.854a.5.5 0 1 1-.708-.708l3-3a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8.5 5.707V11.5z"/>
         </svg>
       </span>
-
-<!--Botón de scroll-->
-	<section class="contenido">
-	</section>
+      <!--Fin Botón de scroll-->
+    </div>
   </body>
 </html>
 
@@ -241,17 +212,16 @@
   var cart = document.getElementById('id02');
   var reg = document.getElementById('id03');
 
-  var xmlhttp = new XMLHttpRequest();
-  xmlhttp.onreadystatechange = function() {
+  var productos = new XMLHttpRequest();
+  productos.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
           // Acceder a los datos devueltos
           var data = this.responseText;
-          console.log(data);
+          //console.log(data);
       }
   };
-  xmlhttp.open("GET", "http://localhost/conexion.php", true);
-  xmlhttp.send();
-
+  productos.open("GET", "http://localhost/inventario.php", true);
+  productos.send();
 
   // Hacer click fuera del modal cierre automático 
   window.onclick = function(event) {
@@ -266,7 +236,7 @@
       }
   }
   // Variables
-  const baseCamisas = [
+  let base = [
       {
           id: 1,
           nombre: 'Camisa',
@@ -289,34 +259,46 @@
           categoria: 2
       }
   ];
-  const clientes = [
-      {
-          id: 1,
-          nombre: 'Pedro Jose',
-          email: 'pedrojose@gmail.com',
-          constraseña: 'huevo',
-          direccion: 'Sauces 106',
-          telefono: '9513114964'
-      }
-  ];
 
   let carrito = [];
-  const divisa = '$';
-  const DOMitems = document.querySelector('#items');
-  const DOMcarrito = document.querySelector('#carrito');
-  const DOMtotal = document.querySelector('#total');
-  const DOMbotonVaciar = document.querySelector('#boton-vaciar');
+  var divisa = '$';
+  var DOMitems = document.querySelector('#items');
+  var DOMcarrito = document.querySelector('#carrito');
+  var DOMtotal = document.querySelector('#total');
+  var DOMbotonVaciar = document.querySelector('#boton-vaciar');
 
-  // Funciones
-
-  /**
-   * Dibuja todos los productos a partir de la base de datos. No confundir con el carrito
-   */
-  function renderizarProductos() {
-      baseCamisas.forEach((info) => {
+  // funciones de filtrado para los productos
+  function filterall() {
+    renderizarProductos(base);
+  }
+  function filtercam() {
+    let camisas = base.filter(persona => persona.nombre == "Camisa")
+    renderizarProductos(camisas);
+  }
+  function filterpan() {
+    let pantalones = base.filter(persona => persona.nombre == "Pantalon")
+    renderizarProductos(pantalones);
+  }
+  function filtersac() {
+    let sacos = base.filter(persona => persona.nombre == "Saco")
+    renderizarProductos(sacos);
+  }
+  function filtercha() {
+    let chalecos = base.filter(persona => persona.nombre == "Chaleco")
+    renderizarProductos(chalecos);
+  }
+  function filtercor() {
+    let corbatas = base.filter(persona => persona.nombre == "Corbata")
+    renderizarProductos(corbatas);
+  }
+   
+  //Dibuja todos los productos a partir de la base de datos. No confundir con el carrito 
+  function renderizarProductos(base) {
+    DOMitems.textContent = '';
+      base.forEach((info) => {
           // Estructura
           const miNodo = document.createElement('div');
-          miNodo.classList.add('card', 'col-sm-5');
+          miNodo.classList.add('card', 'col-xl-5');
           // Body
           const miNodoCardBody = document.createElement('div');
           miNodoCardBody.classList.add('card-body');
@@ -337,7 +319,7 @@
           miNodoBoton.classList.add('btn', 'btn-primary');
           miNodoBoton.textContent = '+';
           miNodoBoton.setAttribute('marcador', info.id);
-          miNodoBoton.addEventListener('click', anyadirProductoAlCarrito);
+          miNodoBoton.addEventListener('click', anadirProductoAlCarrito);
           // Insertamos
           miNodoCardBody.appendChild(miNodoImagen);
           miNodoCardBody.appendChild(miNodoTitle);
@@ -351,7 +333,7 @@
   /**
    * Evento para añadir un producto al carrito de la compra
    */
-  function anyadirProductoAlCarrito(evento) {
+  function anadirProductoAlCarrito(evento) {
       // Anyadimos el Nodo a nuestro carrito
       carrito.push(evento.target.getAttribute('marcador'))
       // Actualizamos el carrito 
@@ -370,19 +352,18 @@
       // Generamos los Nodos a partir de carrito
       carritoSinDuplicados.forEach((item) => {
           // Obtenemos el item que necesitamos de la variable base de datos
-          const miItem = baseCamisas.filter((itemBaseDatos) => {
-              // ¿Coincide las id? Solo puede existir un caso
+          const miItem = base.filter((itemBaseDatos) => {
               return itemBaseDatos.id === parseInt(item);
           });
           // Cuenta el número de veces que se repite el producto
           const numeroUnidadesItem = carrito.reduce((total, itemId) => {
-              // ¿Coincide las id? Incremento el contador, en caso contrario no mantengo
+              //Incremento el contador
               return itemId === item ? total += 1 : total;
           }, 0);
           // Creamos el nodo del item del carrito
-          const miNodo = document.createElement('li');
-          miNodo.classList.add('list-group-item', 'text-right', 'mx4');
-          miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${miItem[0].precio}${divisa}`;
+          const miNodo = document.createElement('div');
+          miNodo.classList.add('list-group-item', 'text-center', 'mx6');
+          miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${divisa}${miItem[0].precio}`;
           // Boton de borrar
           const miBoton = document.createElement('button');
           miBoton.classList.add('btn', 'btn-danger', 'mx-5');
@@ -418,7 +399,7 @@
       // Recorremos el array del carrito 
       return carrito.reduce((total, item) => {
           // De cada elemento obtenemos su precio
-          const miItem = baseCamisas.filter((itemBaseDatos) => {
+          const miItem = base.filter((itemBaseDatos) => {
               return itemBaseDatos.id === parseInt(item);
           });
           // Los sumamos al total
@@ -427,38 +408,31 @@
   }
 
   /**
-   * Varia el carrito y vuelve a dibujarlo
+   * Vacia el carrito y vuelve a dibujarlo
    */
   function vaciarCarrito() {
-      // Limpiamos los productos guardados
       carrito = [];
       // Renderizamos los cambios
       renderizarCarrito();
   }
-
-  // Eventos
   DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 
   //Scroll
   $(document).ready(function(){
-  $('.ir-arriba').click(function(){
-    $('body, html').animate({
-      scrollTop: '0px'
-    }, 300);
-  });
-  $(window).scroll(function(){
-    if( $(this).scrollTop() > 0 ){
-      $('.ir-arriba').slideDown(300);
-    } else {
-      $('.ir-arriba').slideUp(300);
-    }
-  });
+    $('.ir-arriba').click(function(){
+      $('body, html').animate({
+        scrollTop: '0px'
+      }, 300);
+    });
+    $(window).scroll(function(){
+      if( $(this).scrollTop() > 0 ){
+        $('.ir-arriba').slideDown(300);
+      }else {
+        $('.ir-arriba').slideUp(300);
+      }
+    });
   });
 
-  // Inicio
-  renderizarProductos();
+  renderizarProductos(base);
   renderizarCarrito();
 </script>
-<style>
-  
-</style>
