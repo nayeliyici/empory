@@ -19,8 +19,9 @@
             <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/></svg>
           </span>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="./index.html">Inicio</a></li>
+            <li><a class="dropdown-item" href="./usuario.html">Inicio</a></li>
             <li><a class="dropdown-item" href="#catalogo">Catalogo</a></li>
+            <li><a class="dropdown-item" href="./perfil.html">Mi perfil</a></li>
           </ul>
         </div>
         <!--Fin Submenu-->
@@ -30,60 +31,27 @@
           <h1 class="display-4">EMPORY</h1>
         </ul>
         <ul class="navbar-nav">
-          <li>
-            <!--Inicio Buscar-->
-            <form class="form-inline">
-              <input id="buscar" class="form-control mr-sm-2" type="search" aria-label="Search">
-              <button class="btn btn-outline-secondary" type="button" onclick="buscarProducto()">Buscar</button>
-            </form>
-            <!--Fin buscar-->
-          </li>
+          <!--Inicio Buscar-->
+          <form class="form-inline">
+            <input id="buscar" class="form-control mr-sm-2" type="search" aria-label="Search">
+            <button class="btn btn-outline-secondary" type="button" onclick="buscarProducto()">Buscar</button>
+          </form>
+          <!--Fin buscar-->
         </ul>
         <ul>
-          <!--Botón inicio sesión-->
-          <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-dark" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-            Iniciar sesión
-          </button>
-          <!--Botón carritos de compras-->
+           <!--Botón carritos de compras-->
           <button type="button" class="btn btn-transparent" onclick="document.getElementById('id02').style.display='block'">
             <svg xmlns="http://www.w3.org/2000/svg" width="90" height="50" fill="currentColor" class="bi bi-cart4" viewBox="0 0 16 16">
               <path d="M0 2.5A.5.5 0 0 1 .5 2H2a.5.5 0 0 1 .485.379L2.89 4H14.5a.5.5 0 0 1 .485.621l-1.5 6A.5.5 0 0 1 13 11H4a.5.5 0 0 1-.485-.379L1.61 3H.5a.5.5 0 0 1-.5-.5zM3.14 5l.5 2H5V5H3.14zM6 5v2h2V5H6zm3 0v2h2V5H9zm3 0v2h1.36l.5-2H12zm1.11 3H12v2h.61l.5-2zM11 8H9v2h2V8zM8 8H6v2h2V8zM5 8H3.89l.5 2H5V8zm0 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0zm9-1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm-2 1a2 2 0 1 1 4 0 2 2 0 0 1-4 0z"/>
             </svg>
           </button>
+          <!--Botón lista de deseos-->
+          <button type="button" class="btn btn-transparent" onclick="document.getElementById('like').style.display='block'">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+              <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
+            </svg>
+          </button>
         </ul>
-
-        <!--Inicio de sesión-->
-        <div id="id01" class="modal">
-          <form class="modal-content animate" action="http://localhost/login.php" method="POST">
-            <div class="container">
-              <h4 class="display-4">BIENVENIDO</h4>
-            </div>
-            <div class="container">
-              <label for="exampleDropdownFormEmail2" class="form-label">Correo electronico</label>
-              <input type="email" class="form-control" id="emaiLogin" name="emaiLogin" placeholder="email@example.com" required>
-            </div>
-            <div class="container">
-              <label for="exampleDropdownFormPassword2" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="passwordLogin" name="passwordLogin" placeholder="Contraseña" required>
-            </div>
-            <div class="container">
-              <div class="container">
-                <span class="psw">¿No tienes cuenta?
-                  <button onclick="document.getElementById('id03').style.display='block'" class="btn btn-transparent" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
-                    Registrarse
-                  </button>
-                </span>
-              </div>
-            </div>
-            <div class="container">
-              <input type="submit" class="btn btn-outline-success" value="Entrar">
-		            <p class="error-message" id="error-message"></p>
-              <span class="psw"><a href="#">Recuperar la contraseña</a></span>
-            </div>
-          </form>
-        </div>
-        <!--Fin inicio sesión-->
-
         <!--Inicio carrito de compras-->
         <div id="id02" class="modal">
           <div class="modal-content-cart animate">
@@ -99,43 +67,38 @@
                   <p class="text-right">Total (IVA incluido): $<span id="total"></span></p>
                   <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
                   <br><br>
+                  <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="MATSC4JDLS5SU">
+                    <button type="image" class="btn btn-success" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">Pagar</button>
+                    <img alt="" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                  </form>
                 </aside>
               </div>
             </div>
           </div>
         </div>
         <!--Fin carrito de compras-->
-
-        <!--Inicio formulario de registro-->
-        <div id="id03" class="modal">
-          <div class="modal-content-reg animate">
+        
+        <!--Inicio lista de favoritos-->
+        <div id="like" class="modal">
+          <div class="modal-content-cart animate">
             <div class="container">
-              <form class="formreg" action="http://localhost/registro.php" method="POST">
-                <h2>Registro</h2>
-                <label for="nombre">Nombre:</label>
-                <input class="form-control"type="text" id="nombre" name="nombre" required>
-                <label for="email">Email:</label>
-                <input class="form-control" type="email" id="email" name="email" required>
-                <label for="contrasena">Contraseña:</label>
-                <input class="form-control"type="password" id="contrasena" name="contrasena" required>
-                <label for="confirmar-contrasena">Confirmar Contraseña:</label>
-                <input class="form-control"type="password" id="confirmar-contrasena" name="confirmar-contrasena" required>
-                <label for="direccion">Dirección:</label>
-                <input class="form-control"type="text" id="direccion" name="direccion" required>
-                <label for="telefono">Teléfono:</label>
-                <input class="form-control"type="tel" id="telefono" name="telefono" pattern="[0-9]{10}" required><br>
-                <input type="submit" class="btn btn-outline-success" value="Registrarse">
-		            <p class="error-message" id="error-message"></p>
-              </form>
+              <div class="row">
+                <aside class="col-sm-7">
+                  <h2>Favoritos</h2>
+                  <!-- Elementos de la lista -->
+                  <ul id="lista" class="list-group"></ul>
+                  <hr>
+                </aside>
+              </div>
             </div>
           </div>
         </div>
-        <!--Fin formulario de registro-->
-
+        <!--Fin lista de favoritos-->
       </nav>
       <!--Fin menú general-->
         
-      
       <!--Inicio carousel--> 
       <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -391,6 +354,9 @@
       }
       if(event.target== reg){
         reg.style.display = "none";
+      }
+      if(event.target == like){
+        like.style.display = "none";
       }
   }
 
