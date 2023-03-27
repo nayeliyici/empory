@@ -21,7 +21,6 @@
           <ul class="dropdown-menu">
             <li><a class="dropdown-item" href="./usuario.html">Inicio</a></li>
             <li><a class="dropdown-item" href="#catalogo">Catalogo</a></li>
-            <li><a class="dropdown-item" href="./perfil.html">Mi perfil</a></li>
           </ul>
         </div>
         <!--Fin Submenu-->
@@ -46,10 +45,16 @@
             </svg>
           </button>
           <!--Botón lista de deseos-->
-          <button type="button" class="btn btn-transparent" onclick="document.getElementById('like').style.display='block'">
+          <button type="button" class="btn btn-transparent" onclick="document.getElementById('id04').style.display='block'">
             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
               <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>
             </svg>
+          </button>
+        </ul>
+        <ul>
+          <!--Botón cerrar sesión--> 
+          <button onclick="cerrar()" class="btn btn-dark" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+            Cerrar sesión
           </button>
         </ul>
         <!--Inicio carrito de compras-->
@@ -58,7 +63,7 @@
             <div class="container">
               <div class="row">
                 <!-- Carrito -->
-                <aside class="col-sm-7">
+                <aside class="col-sm-15">
                   <h2>Carrito</h2>
                   <!-- Elementos del carrito -->
                   <ul id="carrito" class="list-group"></ul>
@@ -67,12 +72,23 @@
                   <p class="text-right">Total (IVA incluido): $<span id="total"></span></p>
                   <button id="boton-vaciar" class="btn btn-danger">Vaciar</button>
                   <br><br>
-                  <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+
+                  <!-- Pagar sin envío 
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
                     <input type="hidden" name="cmd" value="_s-xclick">
-                    <input type="hidden" name="hosted_button_id" value="MATSC4JDLS5SU">
+                    <input type="hidden" name="hosted_button_id" value="CNEP27F9W5ZU8">
                     <button type="image" class="btn btn-success" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">Pagar</button>
                     <img alt="" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
                   </form>
+                  -->
+                  <!-- Pagar con envío -->
+                  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_s-xclick">
+                    <input type="hidden" name="hosted_button_id" value="XQ45QPL2UEEH8">
+                    <button type="image" class="btn btn-success" name="submit" alt="PayPal, la forma más segura y rápida de pagar en línea.">Pagar </button>
+                    <img alt="" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+                  </form>
+                  
                 </aside>
               </div>
             </div>
@@ -81,14 +97,15 @@
         <!--Fin carrito de compras-->
         
         <!--Inicio lista de favoritos-->
-        <div id="like" class="modal">
+        <div id="id04" class="modal">
           <div class="modal-content-cart animate">
             <div class="container">
               <div class="row">
-                <aside class="col-sm-7">
+                <!-- Carrito -->
+                <aside class="col-sm-20">
                   <h2>Favoritos</h2>
-                  <!-- Elementos de la lista -->
-                  <ul id="lista" class="list-group"></ul>
+                  <!-- Elementos del carrito -->
+                  <ul id="like" class="list-group"></ul>
                   <hr>
                 </aside>
               </div>
@@ -189,13 +206,15 @@
   var DOMproducto = document.querySelector('#producto');
   var DOMitems = document.querySelector('#items');
   var DOMcarrito = document.querySelector('#carrito');
+  var DOMfavoritos = document.querySelector('#like');
   var DOMtotal = document.querySelector('#total');
   var DOMbotonVaciar = document.querySelector('#boton-vaciar');
   var modal = document.getElementById('id01');
   var cart = document.getElementById('id02');
   var reg = document.getElementById('id03');
-  
-  let base = [
+  var favo = document.getElementById('id04');
+  let base = [];
+  /*let base = [
       {
         id: 1,
           nombre: 'Camisa lisa',
@@ -328,21 +347,26 @@
           comentarios:"Para cualquier ocasión",
           categoria:2
       }
-  ];
-  let carrito = [];
+  ];*/
+  var carrito = [];
   let des = [];
+  var favoritos = [];
 
   //Recibir la base de datos
-  var productos = new XMLHttpRequest();
-  productos.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-          // Acceder a los datos devueltos
-          var data = this.responseText;
-          //console.log(data);
-      }
-  };
-  productos.open("GET", "http://localhost/inventario.php", true);
-  productos.send();
+  function consultar(){
+        const peticion = new XMLHttpRequest();
+        
+        peticion.addEventListener("load", () => {
+            respuesta = peticion.response;
+            
+            base = JSON.parse(respuesta)
+            //console.log(base);
+        });
+
+        peticion.open("GET", "http://localhost/inventario.php");
+        peticion.send();
+
+    };
 
   // Hacer click fuera del modal cierre automático 
   window.onclick = function(event) {
@@ -355,8 +379,8 @@
       if(event.target== reg){
         reg.style.display = "none";
       }
-      if(event.target == like){
-        like.style.display = "none";
+      if(event.target == favo){
+        favo.style.display = "none";
       }
   }
 
@@ -365,59 +389,59 @@
     renderizarProductos(base);
   }
   function filtercam() {
-    let camisas = base.filter(producto => producto.categoria == 1)
+    let camisas = base.filter(producto => producto.Categoria_IDCategoria == 1)
     renderizarProductos(camisas);
   }
-  function filterpan() {
-    let pantalones = base.filter(producto => producto.categoria == 2)
-    renderizarProductos(pantalones);
-  }
-  function filtersac() {
-    let sacos = base.filter(producto => producto.categoria == 3)
-    renderizarProductos(sacos);
-  }
-  function filtercha() {
-    let chalecos = base.filter(producto => producto.categoria == 4)
-    renderizarProductos(chalecos);
-  }
   function filtercor() {
-    let corbatas = base.filter(producto => producto.categoria == 5)
+    let corbatas = base.filter(producto => producto.Categoria_IDCategoria == 2)
     renderizarProductos(corbatas);
   }
+  function filtercha() {
+    let chalecos = base.filter(producto => producto.Categoria_IDCategoria == 3)
+    renderizarProductos(chalecos);
+  }
+  function filtersac() {
+    let sacos = base.filter(producto => producto.Categoria_IDCategoria == 4)
+    renderizarProductos(sacos);
+  }
+  function filterpan() {
+    let pantalones = base.filter(producto => producto.Categoria_IDCategoria == 5)
+    renderizarProductos(pantalones);
+  }
   function filterneg() {
-    let negro = base.filter(producto => producto.color == "negro")
+    let negro = base.filter(producto => producto.Color == "negro")
     renderizarProductos(negro);
   }
   function filterbla() {
-    let blanco = base.filter(producto => producto.color == "blanco")
+    let blanco = base.filter(producto => producto.Color == "blanco")
     renderizarProductos(blanco);
   }
   function filterazu() {
-    let azul = base.filter(producto => producto.color == "azul")
+    let azul = base.filter(producto => producto.Color == "azul")
     renderizarProductos(azul);
   }
   function filtergris() {
-    let gris = base.filter(producto => producto.color == "gris")
+    let gris = base.filter(producto => producto.Color == "gris")
     renderizarProductos(gris);
   }
   function filterroj() {
-    let rojo = base.filter(producto => producto.color == "rojo")
+    let rojo = base.filter(producto => producto.Color == "rojo")
     renderizarProductos(rojo);
   }
   function filterbei() {
-    let beige = base.filter(producto => producto.color == "beige")
+    let beige = base.filter(producto => producto.Color == "beige")
     renderizarProductos(beige);
   }
   function filters() {
-    let pequeño = base.filter(producto => producto.talla == "S")
+    let pequeño = base.filter(producto => producto.Talla == "S")
     renderizarProductos(pequeño);
   }
   function filterm() {
-    let mediano = base.filter(producto => producto.talla == "M")
+    let mediano = base.filter(producto => producto.Talla == "M")
     renderizarProductos(mediano);
   }
   function filterg() {
-    let grande = base.filter(producto => producto.talla == "G")
+    let grande = base.filter(producto => producto.Talla == "G")
     renderizarProductos(grande);
   }
   
@@ -425,8 +449,165 @@
   function buscarProducto(){
     var filtrar = document.getElementById('buscar').value;
     document.getElementById('buscar').value = "";
-    let search = base.filter(producto => producto.nombre == filtrar)
+    let search = base.filter(producto => producto.nombre == filtrar )
     renderizarProductos(search);
+  }
+
+  //Añadir un producto al carrito
+  function anadirProductoAlCarrito(evento) {
+    idCar = evento.target.getAttribute('marcador');
+    base.forEach(element => {
+      if(element.IDProductos == idCar){
+        carrito.push(element);
+        alert("Se agregó al carrito correctamente");
+        // Actualizamos el carrito 
+        renderizarCarrito();
+      } 
+    });
+  }
+
+  //Añadir un producto a favoritos
+  function anadirProductoFavoritos(evento) {
+    idFav = evento.target.getAttribute('fav');
+    base.forEach(element => {
+      if(element.IDProductos == idFav){
+        favoritos.push(element);
+        alert("Se agregó a favoritos correctamente");
+        // Actualizamos favoritos
+        renderizarFavoritos();
+      } 
+    });
+  }
+
+  //Identificar el producto seleccionado para ver más
+  function descripcionProducto(evento) {
+    des = evento.target.getAttribute('descripcion');
+    base.forEach((info) => {
+        if(info.IDProductos == des){
+          des = info;
+          renderizarDetalles(info);
+        }
+    });
+  }
+
+  //Renderizar los detalles de un producto
+  function renderizarDetalles() {
+    DOMitems.textContent = '';
+    DOMproducto.textContent = '';
+          // Estructura
+          const miNodo = document.createElement('div');
+          miNodo.classList.add('card', 'col-sm-10');
+          // Body
+          const miNodoCardBody = document.createElement('div');
+          miNodoCardBody.classList.add('card-body');
+          // Titulo
+          const miNodoTitle = document.createElement('h3');
+          miNodoTitle.classList.add('card-title');
+          miNodoTitle.textContent = des.nombre;
+          // Imagen
+          const miNodoImagen = document.createElement('img');
+          miNodoImagen.classList.add('img-fluid');
+          miNodoImagen.setAttribute('src', des.Imagen);
+          // Precio
+          const miNodoPrecio = document.createElement('h4');
+          miNodoPrecio.classList.add('card-text');
+          miNodoPrecio.textContent = `${divisa}${des.Precio}`;
+          // Material
+          const miNodoMaterial = document.createElement('h5');
+          miNodoMaterial.classList.add('card-text');
+          miNodoMaterial.textContent = "Material: "+ des.Material;
+          // Color
+          const miNodoColor = document.createElement('h5');
+          miNodoColor.classList.add('card-text');
+          miNodoColor.textContent = "Color: "+ des.Color;
+          // Talla
+          const miNodoTalla = document.createElement('h5');
+          miNodoTalla.classList.add('card-text');
+          miNodoTalla.textContent = "Talla disponible: "+ des.Talla;
+          // Boton 
+          const miNodoBoton = document.createElement('button');
+          miNodoBoton.classList.add('btn', 'btn-primary');
+          miNodoBoton.textContent = '  Comprar ';
+          miNodoBoton.style.marginLeft = '1rem';
+          miNodoBoton.setAttribute('marcador', des.IDProductos);
+          miNodoBoton.addEventListener('click', anadirProductoAlCarrito);
+          //Favoritos
+          const miNodoFavoritos = document.createElement('button');
+          miNodoFavoritos.classList.add('btn', 'btn-primary');
+          miNodoFavoritos.textContent = '  Favoritos  ';
+          miNodoFavoritos.style.marginLeft = '1rem';
+          miNodoFavoritos.setAttribute('fav', des.IDProductos);
+          miNodoFavoritos.addEventListener('click', anadirProductoFavoritos);
+          //Comentarios
+          const miNodoComentarios = document.createElement('h5');
+          miNodoComentarios.classList.add('card-text');
+          miNodoComentarios.textContent = "Comentarios: "+ des.Comentarios;
+          // Insertamos
+          miNodoCardBody.appendChild(miNodoImagen);
+          miNodoCardBody.appendChild(miNodoTitle);
+          miNodoCardBody.appendChild(miNodoMaterial);
+          miNodoCardBody.appendChild(miNodoColor);
+          miNodoCardBody.appendChild(miNodoTalla);
+          miNodoCardBody.appendChild(miNodoPrecio);
+          miNodoCardBody.appendChild(miNodoComentarios);
+          miNodoCardBody.appendChild(miNodoBoton);
+          miNodoCardBody.appendChild(miNodoFavoritos);
+          miNodo.appendChild(miNodoCardBody);
+          DOMproducto.appendChild(miNodo);
+  }
+
+  //Dibuja todos los productos guardados en el carrito
+  function renderizarCarrito() {
+      // Vaciamos todo el html
+      DOMcarrito.textContent = '';
+      // Quitamos los duplicados
+      const carritoSinDuplicados = [...new Set(carrito)];
+      // Generamos los Nodos a partir de carrito
+      carritoSinDuplicados.forEach((item) => {
+          // Cuenta el número de veces que se repite el producto
+          const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+              //Incremento el contador
+              return itemId === item ? total += 1 : total;
+          }, 0);
+          // Creamos el nodo del item del carrito
+          const miNodo = document.createElement('div');
+          miNodo.classList.add('list-group-item', 'text-center', 'mx6');
+
+          const miNodoCantidad = document.createElement('div');
+          miNodoCantidad.classList.add('text-center', 'mx6');
+          miNodoCantidad.textContent = `Cantidad: ${numeroUnidadesItem}`;
+          
+          const miNodoDescripcion = document.createElement('div');
+          miNodoDescripcion.classList.add('text-center', 'mx6');
+          miNodoDescripcion.textContent = `Descripción:`+item.nombre;
+          
+          const miNodoPrecio = document.createElement('div');
+          miNodoPrecio.classList.add('text-center', 'mx6');
+          miNodoPrecio.textContent = `Precio: ${divisa}`+ item.Precio;
+          // Boton de borrar
+          const miBoton = document.createElement('button');
+          miBoton.classList.add('btn', 'btn-danger', 'mx-5');
+          miBoton.textContent = '  -  ';
+          miBoton.style.marginLeft = '1rem';
+          miBoton.setAttribute('eliminado', item.IDProductos);
+          miBoton.addEventListener('click', borrarItemCarrito);
+          //Boton de agregar
+          const miBotonAdd = document.createElement('button');
+          miBotonAdd.classList.add('btn', 'btn-primary', 'mx-5');
+          miBotonAdd.textContent = '  +  ';
+          miBotonAdd.style.marginLeft = '1rem';
+          miBotonAdd.setAttribute('marcador', item.IDProductos);
+          miBotonAdd.addEventListener('click', anadirProductoAlCarrito);
+          // Mezclamos nodos
+          miNodo.appendChild(miNodoCantidad);
+          miNodo.appendChild(miNodoDescripcion);
+          miNodo.appendChild(miNodoPrecio);
+          miNodo.appendChild(miBoton);
+          miNodo.appendChild(miBotonAdd);
+          DOMcarrito.appendChild(miNodo);
+      });
+      // Renderizamos el precio total en el HTML
+      DOMtotal.textContent = calcularTotal();
   }
 
   //Dibuja todos los productos a partir de la base de datos
@@ -447,16 +628,16 @@
           // Imagen
           const miNodoImagen = document.createElement('img');
           miNodoImagen.classList.add('img-fluid');
-          miNodoImagen.setAttribute('src', info.imagen);
+          miNodoImagen.setAttribute('src', info.Imagen);
           // Precio
           const miNodoPrecio = document.createElement('p');
           miNodoPrecio.classList.add('card-text');
-          miNodoPrecio.textContent = `${divisa}${info.precio}`;
+          miNodoPrecio.textContent = `${divisa}${info.Precio}`;
           //Ver más
           const miNodoBotonDes = document.createElement('button');
           miNodoBotonDes.classList.add('btn', 'btn-primary');
           miNodoBotonDes.textContent = 'Ver más';
-          miNodoBotonDes.setAttribute('descripcion', info.id);
+          miNodoBotonDes.setAttribute('descripcion', info.IDProductos);
           miNodoBotonDes.addEventListener('click', descripcionProducto);
           // Insertamos
           miNodoCardBody.appendChild(miNodoImagen);
@@ -467,152 +648,97 @@
           DOMitems.appendChild(miNodo);
       });
   }
-
-  //Añadir un producto al carrito
-  function anadirProductoAlCarrito(evento) {
-      // Añadimos el Nodo a nuestro carrito
-      carrito.push(evento.target.getAttribute('marcador'))
-      // Actualizamos el carrito 
-      renderizarCarrito();
-
-  }
   
-  //Identificar el producto seleccionado para ver más
-  function descripcionProducto(evento) {
-    des = evento.target.getAttribute('descripcion');
-    base.forEach((info) => {
-        if(info.id == des){
-          des = info;
-          renderizarDetalles(info);
-        }
-    });
-  }
-  
-  //Renderizar los detalles de un producto
-  function renderizarDetalles() {
-    DOMitems.textContent = '';
-    DOMproducto.textContent = '';
-          // Estructura
-          const miNodo = document.createElement('div');
-          miNodo.classList.add('card', 'col-sm-10');
-          // Body
-          const miNodoCardBody = document.createElement('div');
-          miNodoCardBody.classList.add('card-body');
-          // Titulo
-          const miNodoTitle = document.createElement('h3');
-          miNodoTitle.classList.add('card-title');
-          miNodoTitle.textContent = des.nombre;
-          // Imagen
-          const miNodoImagen = document.createElement('img');
-          miNodoImagen.classList.add('img-fluid');
-          miNodoImagen.setAttribute('src', des.imagen);
-          // Precio
-          const miNodoPrecio = document.createElement('h4');
-          miNodoPrecio.classList.add('card-text');
-          miNodoPrecio.textContent = `${divisa}${des.precio}`;
-          // Material
-          const miNodoMaterial = document.createElement('h5');
-          miNodoMaterial.classList.add('card-text');
-          miNodoMaterial.textContent = "Material: "+ des.material;
-          // Color
-          const miNodoColor = document.createElement('h5');
-          miNodoColor.classList.add('card-text');
-          miNodoColor.textContent = "Color: "+ des.color;
-          // Talla
-          const miNodoTalla = document.createElement('h5');
-          miNodoTalla.classList.add('card-text');
-          miNodoTalla.textContent = "Talla disponible: "+ des.talla;
-          // Boton 
-          const miNodoBoton = document.createElement('button');
-          miNodoBoton.classList.add('btn', 'btn-primary');
-          miNodoBoton.textContent = 'Agregar';
-          miNodoBoton.setAttribute('marcador', des.id);
-          miNodoBoton.addEventListener('click', anadirProductoAlCarrito);
-          //Comentarios
-          const miNodoComentarios = document.createElement('h5');
-          miNodoComentarios.classList.add('card-text');
-          miNodoComentarios.textContent = "Comentarios: "+ des.comentarios;
-          // Insertamos
-          miNodoCardBody.appendChild(miNodoImagen);
-          miNodoCardBody.appendChild(miNodoTitle);
-          miNodoCardBody.appendChild(miNodoMaterial);
-          miNodoCardBody.appendChild(miNodoColor);
-          miNodoCardBody.appendChild(miNodoTalla);
-          miNodoCardBody.appendChild(miNodoPrecio);
-          miNodoCardBody.appendChild(miNodoComentarios);
-          miNodoCardBody.appendChild(miNodoBoton);
-          miNodo.appendChild(miNodoCardBody);
-          DOMproducto.appendChild(miNodo);
-  }
-
-  //Dibuja todos los productos guardados en el carrito
-  function renderizarCarrito() {
+  //Renderiza la lista de favoritos
+  function renderizarFavoritos() {
       // Vaciamos todo el html
-      DOMcarrito.textContent = '';
+      DOMfavoritos.textContent = '';
       // Quitamos los duplicados
-      const carritoSinDuplicados = [...new Set(carrito)];
+      const favoritosSinDuplicados = [...new Set(favoritos)];
       // Generamos los Nodos a partir de carrito
-      carritoSinDuplicados.forEach((item) => {
-          // Obtenemos el item que necesitamos de la variable base de datos
-          const miItem = base.filter((itemBaseDatos) => {
-              return itemBaseDatos.id === parseInt(item);
-          });
+      favoritosSinDuplicados.forEach((item) => {
           // Cuenta el número de veces que se repite el producto
-          const numeroUnidadesItem = carrito.reduce((total, itemId) => {
+          const numeroUnidadesItem = favoritos.reduce((total, itemId) => {
               //Incremento el contador
               return itemId === item ? total += 1 : total;
           }, 0);
           // Creamos el nodo del item del carrito
           const miNodo = document.createElement('div');
           miNodo.classList.add('list-group-item', 'text-center', 'mx6');
-          miNodo.textContent = `${numeroUnidadesItem} x ${miItem[0].nombre} - ${divisa}${miItem[0].precio}`;
-          // Boton de borrar
+          //Nodo descripción
+          const miNodoDescripcion = document.createElement('div');
+          miNodoDescripcion.classList.add('text-center', 'mx6');
+          miNodoDescripcion.textContent = `Descripción:`+ item.nombre;
+          //Nodo precio
+          const miNodoPrecio = document.createElement('div');
+          miNodoPrecio.classList.add('text-center', 'mx6');
+          miNodoPrecio.textContent = `Precio: ${divisa}`+item.Precio;
+          //Boton de borrar
           const miBoton = document.createElement('button');
           miBoton.classList.add('btn', 'btn-danger', 'mx-5');
-          miBoton.textContent = '-';
+          miBoton.textContent = '  Eliminar  ';
           miBoton.style.marginLeft = '1rem';
           miBoton.dataset.item = item;
-          miBoton.addEventListener('click', borrarItemCarrito);
-          //Boton de agregar
-          const miBotonAdd = document.createElement('button');
-          miBotonAdd.classList.add('btn', 'btn-primary', 'mx-5');
-          miBotonAdd.textContent = '+';
-          miBotonAdd.style.marginLeft = '1rem';
-          miBotonAdd.dataset.item = item;
-          miBotonAdd.setAttribute('marcador', item);
-          console.log(item.id);
-          miBotonAdd.addEventListener('click', anadirProductoAlCarrito);
+          miBoton.setAttribute('eliminado', item.IDProductos);
+          console.log(item);
+          miBoton.addEventListener('click', borrarItemFavoritos);
+          //Boton de agregar a carrito
+          const miNodoBoton = document.createElement('button');
+          miNodoBoton.classList.add('btn', 'btn-primary');
+          miNodoBoton.textContent = 'Comprar';
+          miNodoBoton.style.marginLeft = '1rem';
+          miNodoBoton.setAttribute('marcador', item.IDProductos);
+          miNodoBoton.addEventListener('click', anadirProductoAlCarrito);
           // Mezclamos nodos
+          miNodo.appendChild(miNodoDescripcion);
+          miNodo.appendChild(miNodoPrecio);
           miNodo.appendChild(miBoton);
-          miNodo.appendChild(miBotonAdd);
-          DOMcarrito.appendChild(miNodo);
+          miNodo.appendChild(miNodoBoton);
+          DOMfavoritos.appendChild(miNodo);
       });
-      // Renderizamos el precio total en el HTML
-      DOMtotal.textContent = calcularTotal();
   }
 
   //Evento para borrar un elemento del carrito
   function borrarItemCarrito(evento) {
-      // Obtenemos el producto ID que hay en el boton pulsado
-      const id = evento.target.dataset.item;
-      // Borramos el productos
-      carrito.pop(id);
-      // volvemos a renderizar
-      renderizarCarrito();
+    idEliCar = evento.target.getAttribute('eliminado');
+    //Guardamos los productos a eliminar
+    const carritoTem = carrito.filter((item) => item.IDProductos == idEliCar);
+    //Eliminamos los productos
+    carrito.forEach(element => {
+      if (element.IDProductos == idEliCar){
+        carrito = carrito.filter((item) => item.IDProductos !== idEliCar);
+      }
+    });
+    //Ingresamos los productos eliminados menos uno
+    for (let i = 0; i < carritoTem.length-1; i++) {
+      carrito.push(carritoTem[i]);
+    }
+    alert("Se eliminó del carrito");
+    renderizarCarrito();
+  }
+
+  //Evento para borrar un elemento de favoritos
+  function borrarItemFavoritos(evento) {
+    idEliFav = evento.target.getAttribute('eliminado');
+    favoritos = favoritos.filter((item) => item.IDProductos !== idEliFav);
+    alert("Se eliminó de favoritos");
+    renderizarFavoritos();
   }
 
   // Calcula el precio total teniendo en cuenta los productos repetidos
   function calcularTotal() {
       // Recorremos el array del carrito 
-      return carrito.reduce((total, item) => {
+      return carrito.reduce((item) => {
+        let miItem = 0;
           // De cada elemento obtenemos su precio
-          const miItem = base.filter((itemBaseDatos) => {
-              return itemBaseDatos.id === parseInt(item);
-          });
-          // Los sumamos al total
-          return total + miItem[0].precio;
+          carrito.forEach(element => {
+            miItem += Number(element.Precio);
+          })
+          console.log(miItem);
+          return miItem;
       }, 0).toFixed(2);
   }
+
 
   //Vacia el carrito y vuelve a dibujarlo
   function vaciarCarrito() {
@@ -622,6 +748,10 @@
   }
   DOMbotonVaciar.addEventListener('click', vaciarCarrito);
 
+  //Cerrar sesión
+  function cerrar(){
+    window.location.href = "http://localhost/Empory/components/index.html";
+  }
   //Scroll
   $(document).ready(function(){
     $('.ir-arriba').click(function(){
@@ -637,7 +767,9 @@
       }
     });
   });
-
+  
   renderizarProductos(base);
   renderizarCarrito();
+  renderizarFavoritos();
+  consultar();
 </script>
