@@ -110,3 +110,8 @@ input[type=email], input[type=password] {
 	bottom:20px;
 	right:20px;
 }
+
+.myimg {
+  width: 200px;
+  margin-left: 300px;
+}

@@ -120,6 +120,9 @@
       <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
+            <img src="./images/carousel/carousel1.webp" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100">
+          </div>
+          <div class="carousel-item">
             <img src="./images/carousel/carousel2.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100">
           </div>
           <div class="carousel-item">
@@ -130,9 +133,6 @@
           </div>
           <div class="carousel-item">
             <img src="./images/carousel/carousel5.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100">
-          </div>
-          <div class="carousel-item">
-            <img src="./images/carousel/carousel6.jpg" class="bd-placeholder-img bd-placeholder-img-lg d-block w-100">
           </div>
         </div>
           <span class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
@@ -389,48 +389,36 @@
     renderizarProductos(base);
   }
   function filtercam() {
-    let camisas = base.filter(producto => producto.Categoria_IDCategoria == 1)
+    let camisas = base.filter(producto => producto.Inventario_IDInventario == 1)
     renderizarProductos(camisas);
   }
   function filtercor() {
-    let corbatas = base.filter(producto => producto.Categoria_IDCategoria == 2)
+    let corbatas = base.filter(producto => producto.Inventario_IDInventario == 2)
     renderizarProductos(corbatas);
   }
   function filtercha() {
-    let chalecos = base.filter(producto => producto.Categoria_IDCategoria == 3)
+    let chalecos = base.filter(producto => producto.Inventario_IDInventarioa == 3)
     renderizarProductos(chalecos);
   }
   function filtersac() {
-    let sacos = base.filter(producto => producto.Categoria_IDCategoria == 4)
+    let sacos = base.filter(producto => producto.Inventario_IDInventario == 4)
     renderizarProductos(sacos);
   }
   function filterpan() {
-    let pantalones = base.filter(producto => producto.Categoria_IDCategoria == 5)
+    let pantalones = base.filter(producto => producto.Inventario_IDInventario == 5)
     renderizarProductos(pantalones);
   }
   function filterneg() {
-    let negro = base.filter(producto => producto.Color == "negro")
+    let negro = base.filter(producto => producto.Color == "Negro")
     renderizarProductos(negro);
   }
-  function filterbla() {
-    let blanco = base.filter(producto => producto.Color == "blanco")
-    renderizarProductos(blanco);
-  }
   function filterazu() {
-    let azul = base.filter(producto => producto.Color == "azul")
+    let azul = base.filter(producto => producto.Color == "Azul")
     renderizarProductos(azul);
   }
   function filtergris() {
-    let gris = base.filter(producto => producto.Color == "gris")
+    let gris = base.filter(producto => producto.Color == "Gris")
     renderizarProductos(gris);
-  }
-  function filterroj() {
-    let rojo = base.filter(producto => producto.Color == "rojo")
-    renderizarProductos(rojo);
-  }
-  function filterbei() {
-    let beige = base.filter(producto => producto.Color == "beige")
-    renderizarProductos(beige);
   }
   function filters() {
     let pequeño = base.filter(producto => producto.Talla == "S")
@@ -506,7 +494,7 @@
           miNodoTitle.textContent = des.nombre;
           // Imagen
           const miNodoImagen = document.createElement('img');
-          miNodoImagen.classList.add('img-fluid');
+          miNodoImagen.classList.add('img', 'myimg');
           miNodoImagen.setAttribute('src', des.Imagen);
           // Precio
           const miNodoPrecio = document.createElement('h4');
